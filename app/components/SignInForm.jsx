@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import axios from 'axios'
+import { changeToEngNum } from './Help'
 
 const isValidEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -81,8 +82,8 @@ const SignInForm = () => {
       <h2 className="text-2xl font-bold mb-4 text-center">Sign In</h2>
 
       <div className="mb-4">
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-          Email
+        <label htmlFor="email" className="block text-sm text-right font-medium text-gray-700">
+          ایمیل
         </label>
         <input
           type="email"
@@ -96,8 +97,8 @@ const SignInForm = () => {
       </div>
 
       <div className="mb-4">
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-          Name
+        <label htmlFor="name" className="block text-right text-sm font-medium text-gray-700">
+          اسم
         </label>
         <input
           type="text"
@@ -110,8 +111,8 @@ const SignInForm = () => {
       </div>
 
       <div className="mb-4">
-        <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
-          Phone Number
+        <label htmlFor="phoneNumber" className="block text-sm text-right font-medium text-gray-700">
+          شماره تماس
         </label>
         <input
           type="tel"
@@ -120,6 +121,9 @@ const SignInForm = () => {
           value={formData.phoneNumber}
           onChange={handleChange}
           className={inputClass('phoneNumber')}
+          onInput={(event) => {
+            event.target.value = changeToEngNum(event.target.value)
+          }}
         />
         {errors.phoneNumber && <ErrorMessage error={errors.phoneNumber} />}
       </div>
